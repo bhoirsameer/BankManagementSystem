@@ -41,5 +41,7 @@ urlpatterns = [
     
     path('back/<int:id>',views.holder_homepage,name='holder_homepage'),
 
+    path('downloadDetails',views.downloadDetails,name="downloadDetails"),
+
 
 ]#/transactions/{{user.id}}
