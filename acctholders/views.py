@@ -295,3 +295,12 @@ def transactions(request):
         'transactions':transactions
     }
     return render(request,'alltransactions.html',data)
+    
+def downloadDetails(request):
+    response = HttpResponse(content_type = "text/csv")
+    response['Content-Disposition'] = 'attachment; filename="Accountdetails.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['Name','email','password1','password2','password2','aadhaar','address','phone','acc_typ','balance'])
+    for i in AcctHolders.objects.all():
+        writer.writerow([i.name,i.email,i.aadhaar,i.address,i.phone,i.acc_typ,i.balance])
+    return response
